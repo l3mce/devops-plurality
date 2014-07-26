@@ -1,0 +1,29 @@
+#!/bin/bash
+
+pushd /etc/yum.repos.d
+wget http://download.virtualbox.org/virtualbox/rpm/rhel/virtualbox.repo
+yum -y update
+yum -y install binutils qt gcc make patch libgomp glibc-headers glibc-devel kernel-headers kernel-devel dkms git 
+echo "/root/chef-repo/l3mce/second_boot.sh" >> /etc/rc.d/rc.local
+mkdir -p /root/chef-repo/l3mce
+cat >/root/chef-repo/l3mce/second_boot.sh <<EOF
+#!/bin/bash
+yum -y install VirtualBox-4.3
+/etc/init.d/vboxdrv setup
+pushd /root/chef-repo
+rpm -iv http://files.vagrantup.com/packages/a40522f5fabccb9ddabad03d836e120ff5d14093/vagrant_1.3.5_x86_64.rpm
+mkdir -p /root/Documents/git_repos/chef-artifacts
+mkdir -p '/root/.chef' && touch '/root/.chef/dev-ops.pem'
+mkdir -p '/root/.chefdk/gem/ruby/2.1.0/bin'
+PATH="$PATH:/root/.chefdk/gem/ruby/2.1.0/bin"
+chef gem install json
+popd
+pushd /root/chef-repo/devops-plurality
+vagrant plugin install vagrant-omnibus
+vagrant up
+sed '$d' /etc/rc.d/rc.local
+popd
+EOF
+popd
+chmod +x /root/chef-repo/l3mce/second_boot.sh
+reboot

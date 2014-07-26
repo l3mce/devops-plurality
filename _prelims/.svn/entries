@@ -1,0 +1,56 @@
+10
+
+dir
+0
+http://svn.linuxmce.org/svn/people/l3mce/multi-oracle-dev-vms/_prelims
+http://svn.linuxmce.org/svn
+add
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3ea1a0c4-95e7-0310-96db-cd5aeef412b9
+
+test.rb
+file
+
+
+
+add
+
+Vagrantfile_config_in_file_v1
+file
+
+
+
+add
+
+Vagrantfile_json_v2
+file
+
+
+
+add
+
+nodes_v1.json
+file
+
+
+
+add
+
