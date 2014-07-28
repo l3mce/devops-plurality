@@ -1,6 +1,5 @@
 #!/bin/bash
 
-trap reboot 0
 pushd /etc/yum.repos.d
 wget http://download.virtualbox.org/virtualbox/rpm/rhel/virtualbox.repo
 yum -y update
