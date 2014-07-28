@@ -24,7 +24,7 @@ popd
 pushd /root/chef-repo/devops-plurality
 vagrant plugin install vagrant-omnibus
 vagrant up
-sed '/$d' /etc/rc.d/rc.local
+sed '\$d' /etc/rc.d/rc.local
 popd
 EOF
 popd
