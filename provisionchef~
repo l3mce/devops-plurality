@@ -13,18 +13,20 @@ cat >/root/chef-repo/l3dev/second_boot.sh <<EOF
 
 /etc/init.d/vboxdrv setup
 pushd /root/chef-repo
-rpm -iv http://files.vagrantup.com/packages/a40522f5fabccb9ddabad03d836e120ff5d14093/vagrant_1.3.5_x86_64.rpm
+rpm -iv https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.3_x86_64.rpm
+#http://files.vagrantup.com/packages/a40522f5fabccb9ddabad03d836e120ff5d14093/vagrant_1.3.5_x86_64.rpm
+
 mkdir -p /root/Documents/git_repos/chef-artifacts
 mkdir -p '/root/.chef' && touch '/root/.chef/dev-ops.pem'
 mkdir -p '/root/.chefdk/gem/ruby/2.1.0/bin'
 PATH="$PATH:/root/.chefdk/gem/ruby/2.1.0/bin"
 chef gem install json
-git clone https://github.com/l3dev/devops-plurality.git
+#git clone https://github.com/l3dev/devops-plurality.git
 popd
 pushd /root/chef-repo/devops-plurality
-vagrant plugin install vagrant-omnibus
+
 vagrant up
-sed '/$d' /etc/rc.d/rc.local
+sed '\$d' /etc/rc.d/rc.local
 popd
 EOF
 popd
